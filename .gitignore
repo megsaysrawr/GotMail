@@ -43,7 +43,6 @@ build/
 *.vssscc
 .builds
 *.pidb
-*.log
 *.scc
 
 # Visual C++ cache files
@@ -160,3 +159,5 @@ $RECYCLE.BIN/
 # =========================
 
 FlaskTest_1/FlaskTest_1/env/
+*.pyc
+/spyrk_config.py
