@@ -16,5 +16,9 @@ def sendemail(from_addr, to_addr_list, subject, message, login, password, smtpse
 	problems = server.sendmail(from_addr, to_addr_list, message)
 	server.quit
 
-sendemail('OlinGotMail@gmail.com', 'anders.johnson@students.olin.edu', 'You\'ve Got Mail!', 'Go check your mailbox, you lucky one you!',\
- mail_auth['login'], mail_auth['password'])
+def main():
+    sendemail('OlinGotMail@gmail.com', '[DEST_EMAIL]', 'You\'ve Got Mail!', 'Go check your mailbox, you lucky one you!',\
+    mail_auth['login'], mail_auth['password'])
+
+if __name__ == '__main__':
+    main()
