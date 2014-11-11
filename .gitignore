@@ -54,4 +54,4 @@ docs/_build/
 target/
 
 # Ignore our login and password info
-/ mail_authenication.py
+/mail_authenication.py
