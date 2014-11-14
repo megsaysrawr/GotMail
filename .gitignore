@@ -160,3 +160,4 @@ $RECYCLE.BIN/
 # =========================
 
 FlaskTest_1/FlaskTest_1/env/
+FlaskTest_1/FlaskTest_1/web.debug.config
