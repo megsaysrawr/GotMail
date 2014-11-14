@@ -44,7 +44,7 @@
     <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\favicon.ico" />
+    <Content Include="static\favicon.ico" />
     <Content Include="requirements.txt" />
     <Content Include="static\content\bootstrap.css" />
     <Content Include="static\content\bootstrap.min.css" />
