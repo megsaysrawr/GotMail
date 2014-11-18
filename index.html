@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <!--
     Modified from "Astral" by HTML5 UP
@@ -91,22 +92,53 @@
                                     <h2>Design</h2>
                                 </header>
                                 
-                                <p>Creating a mailbox notification system -- design review edition. 
-
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consequat arcu sed risus posuere mattis. Integer diam leo, lobortis sed vulputate a, venenatis id ante. Sed lacus justo, sagittis a bibendum sed, luctus eget magna. Proin ut urna pretium, varius eros sit amet, posuere sem. Pellentesque elit lacus, mattis eget aliquam et, tempor et ex. In gravida massa nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in blandit mauris.
-
-                                Maecenas accumsan augue tincidunt, dictum libero laoreet, aliquet velit. Vestibulum sed nunc at elit rutrum tincidunt. Suspendisse feugiat tempus mauris eu volutpat. Pellentesque massa ante, tristique sit amet cursus at, ultricies at ipsum. Integer sed congue ligula. Pellentesque nulla tortor, laoreet ac dignissim quis, euismod non mi. Maecenas finibus ultrices nisi sit amet elementum. Phasellus placerat, neque scelerisque sodales consectetur, massa diam semper orci, ut sodales neque ex eget sem. Morbi et mauris ut dui laoreet rhoncus. Nullam ac ex quis nisi luctus fermentum eget at erat.
+                                <h3>Notification</h3>
+                                <p>Our main goal is to notify a user when they receive mail in their mailbox, so our first design decision centered around how to send this notification. We considered text messages, emails, and even twitter, all of which would be possible using Python. We’ve chosen email as our first and primary method of user notification. Email is a means of conveying similar information--information about meetings, about orders, and about deliveries--and is the natural manner of letting users know that they’ve got mail.
                                 </p>
-                                <h3>Subtitle</h3>   
-                                Integer gravida est scelerisque ullamcorper cursus. Nulla in lobortis arcu, vel dapibus metus. In hac habitasse platea dictumst. Vivamus sed arcu tempus, aliquet nisi eu, lacinia sem. Nulla nec pulvinar erat. Aenean vestibulum convallis libero ac dignissim. Sed tincidunt eros et elit vulputate, at feugiat sapien blandit. Nulla neque purus, pretium a volutpat sed, euismod in libero. Curabitur nec nulla sit amet est gravida aliquam. Fusce dictum porta dapibus. Sed aliquet laoreet leo eu gravida. Integer quis posuere lacus. Duis vestibulum quis diam et lobortis. Integer id interdum erat, a tristique neque.
 
-                                Integer vestibulum nisl mi, eu feugiat orci fermentum eu. Sed cursus mattis orci ut tempus. Aliquam tempor purus vel quam pellentesque, a laoreet tellus convallis. Donec augue purus, semper in nisi nec, porta tristique eros. Vestibulum faucibus fringilla orci sit amet pulvinar. Ut lectus enim, consectetur convallis lectus efficitur, aliquam tempus risus. Quisque venenatis quam id ipsum finibus posuere. Vivamus iaculis sollicitudin nisi, ut tempor ex elementum quis.
+                                <h3>Wireless Connectivity</h3>   
+                                <p>Our next design decision involved determining how to connect the sensors in the mailbox to our online notification center. A Raspberry Pi, [RPi] which lacks an analog to digital converter [ADC], would make it more difficult to interface with some very useful sensors. Additionally, an RPi running as a mobile sensing unit would consume relatively great amounts of power and lacks a native wireless connectivity option--not ideal for a compact, self-contained sensing unit. A microcontroller, such as the Arduino, is closer to what we need--Arduinos cost less than an RPi and make it easier to interface with sensors. However, wireless connectivity is still a relatively expensive add-on.<br>
 
-                                Pellentesque condimentum, ligula eu suscipit vestibulum, turpis turpis aliquam turpis, vel consectetur est lacus quis risus. Cras nec luctus ex. Curabitur lorem mauris, egestas id orci ut, sollicitudin pharetra sapien. Quisque a elit ut felis sodales pulvinar. Morbi in ullamcorper quam, ut scelerisque turpis. Mauris nisi dolor, bibendum a lacus eu, ultricies finibus felis. Vivamus ullamcorper sagittis ultricies. Donec auctor commodo sapien. Quisque a lorem facilisis, porta tortor non, luctus libero. In ullamcorper enim a arcu hendrerit, sed maximus arcu ornare. Nam consectetur semper rutrum. Praesent volutpat ut tellus in mollis. Sed pulvinar aliquet justo id dapibus. Nunc placerat porttitor rutrum.
+                                Due to these design considerations, we have chosen a Spark Core as the most effective hardware for our purposes. Spark Core is a tiny microcontroller with tightly integrated wireless connectivity. It allows us to remotely read sensors and run functions using an API.
+                                </p>
 
-                                Curabitur mollis tellus et dolor venenatis euismod. Fusce iaculis vel risus blandit tincidunt. Phasellus massa mi, pellentesque eu ante vitae, egestas scelerisque tellus. Pellentesque rhoncus tellus nec turpis fermentum, sit amet suscipit justo mattis. Pellentesque aliquet posuere ipsum vel vehicula. Praesent vulputate, orci a semper hendrerit, quam tellus facilisis risus, eu convallis dolor nisi et magna. Etiam egestas justo vel rhoncus faucibus. Pellentesque sodales ipsum vel lorem vehicula semper.
+                                <h3>Server</h3>   
+                                <p>We determined that we have a need for a server which runs continuously in order to routinely check the mailboxes and send notifications. In future iterations, it is possible that this server need will be met using a Raspberry Pi. However now, in our initial phases of development, using a computer works just fine.
+                                </p>
 
-                                Curabitur dictum porta elit, non tincidunt diam ornare in. In molestie et odio eget sagittis. Vivamus ac massa lectus. Proin fringilla, velit ac ultrices blandit, lacus urna pulvinar velit, a dictum nisi leo ut velit. Donec turpis sapien, tempor sed lobortis non, maximus quis nibh. Cras sed ante eleifend, vestibulum massa elementum, pellentesque tellus. Phasellus placerat risus quis enim finibus scelerisque. Nulla quis lorem ut libero iaculis venenatis. </p>
+                                <h3>Model</h3>   
+                                <p>We chose to build a model of one of the Olin mailboxes so we could run tests outside of the mailroom.  We used the dimensions from the mailboxes and built a replica out of wood.  By having a 3D model that is mobile, we are able to make sure all of our components fit inside of the mailbox and we can rapidly prototype without having to constantly go into the mailroom, which is especially important if we are working when the mailroom is closed.
+                                </p>
+
+                                <h3>Sensors</h3>   
+                                <p>We are still working on determining the best type of sensor for the job. So far, we have considered pressure sensors and light beam IR sensors. Pressure sensors might not be sensitive enough to account for lighter pieces of mail. IR sensors might be too easily tripped. We plan to experiment with different types of sensors in order to find the best available technology.
+                                </p>
+
+                                <h3>Objected Oriented Code</h3>   
+                                <p>Our class structure was designed to allow for ease of scaling. First, we created a Mailbox object. Each Mailbox object in our current iteration has three attributes: got_mail, owner, and last_notified.<br>
+
+                                got_mail returns either true or false depending on whether or not there is mail contained in the mailbox.<br>
+                                owner contains the contact information of the owner of the mailbox, at this point, their email address.<br>
+                                last_notified returns the time that the user was last pinged. The goal of this attribute is to prevent email spamming of the user. This is useful if we only want to notify the user once per mail item, or if we want to remind them that a piece of mail has been . This is reset whenever the sensor records more mail or when the user removes the mail.<br>
+
+                                Each Mailbox also has a method called notify_owner() which sends an email when the sensor detects mail in the mailbox of the user. It also records the time that this notification is sent, to be used by the attribute last_notified.
+                                Once we expand to have multiple Mailboxes, it will be useful for scaling to be able to access a collection of Mailboxes. In order to  do this, we have created a Mailroom class. The Mailroom class currently contains the operating hours of the Mailroom and  a collection of Mailboxes.
+                                </p>
+
+                                <h3>UML Diagram</h3>   
+                                <p>Here is our working UML diagram, described by the Object Oriented Code in the previous section.
+                                <img src="images/uml_diagram.jpeg" alt="UML Diagram"/>
+                                </p>
+
+                                <h3>Development Plan: Next Steps</h3>
+                                <ul>
+                                        <li>Get a sensor</li>
+                                        <li>Implement the object oriented class structure</li>
+                                        <li>Make the script that will check the mailbox state and send emails</li>
+                                        <li>Double down on web</li>
+                                        <li>Optimize the Spark Core (ex. turn off the wireless except when mail is detected)</li>
+                                </ul>
+
                             </article>
 
                         <!-- Check Mail -->
