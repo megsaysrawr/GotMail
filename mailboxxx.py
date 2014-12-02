@@ -44,8 +44,8 @@ class Mailbox(object):
         error = 0
         try:
             sensor = self.core.analogRead(self.sensor_num)
-        except:
-            #   Catch errors, spark temporarily disconnected from internet, etc.
+        except:     # Specifically, KeyError, I think.
+            # Catch errors, spark temporarily disconnected from internet, etc.
             # print 'Connection error'
             error = 1
         else:
