@@ -55,3 +55,4 @@ target/
 
 # Ignore our login and password info
 /mail_authentication.py
+arrowtests.py
