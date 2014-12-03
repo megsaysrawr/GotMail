@@ -79,7 +79,14 @@ class Mailbox(object):
         """Eventually, this will test the time passed since notify
         and then return True if we should send an email
         """
-        return True
+        past = self.lastnotification
+        trigger_hour = past.hour	# Creates a time gap of the specified number of hours
+        trigger_day = past.day + 1		# Adds one day for comparison
+        present = arrow.utcnow()
+        if (present.day >= trigger_day) and (present.hour >= trigger_hour):
+            return True
+        else:
+        	return False
 
     def notify_owner(self, Owner):
         sendemail('OlinGotMail@gmail.com', self.owner.email, 'You\'ve Got Mail!', 'Go check your mailbox, ' + self.owner.name, \
