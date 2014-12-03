@@ -50,7 +50,7 @@ class Mailbox(object):
             error = 1
         else:
             previous_mail = self.got_mail
-            if sensor > 2000:   # Mail threshold
+            if sensor > 3300:   # Mail threshold
                 self.got_mail = True
             else:
                 self.got_mail = False
@@ -77,18 +77,18 @@ class Mailbox(object):
 
     def notify_yes(self):
         """Eventually, this will test the time passed since notify
-        and then return True if we should send an email
+        and then return True if we should send an email POADS
         """
-        past = self.lastnotification
-        trigger_hour = past.hour	# Creates a time gap of the specified number of hours
-        trigger_day = past.day + 1		# Adds one day for comparison
-        present = arrow.utcnow()
-        if (present.day >= trigger_day) and (present.hour >= trigger_hour):
+        if self.lastnotification is None:
             return True
-        else:
-        	return False
+        past = self.lastnotification
+        present = arrow.utcnow()
+        difference = present - past
+        if difference > 60 * 10:    # Configure this. Make mailbox attribute?
+            return True
+    	return False
 
-    def notify_owner(self, Owner):
+    def notify_owner(self):
         sendemail('OlinGotMail@gmail.com', self.owner.email, 'You\'ve Got Mail!', 'Go check your mailbox, ' + self.owner.name, \
              mail_auth['login'], mail_auth['password'])
         self.lastnotification = arrow.utcnow()
@@ -121,6 +121,10 @@ def main():
                 if error:   # Fiddlesticks
                     print 'Error while checking ' + str(mb)
             print 'Done Checking.'
+            for mb in Olin.mailboxes:
+                if mb.got_mail and mb.notify_yes:
+                    mb.notify_owner()
+                    print 'SENT!'
 
         # For every mailbox
             #if it's got mail AND NOT within a few days since last notification
