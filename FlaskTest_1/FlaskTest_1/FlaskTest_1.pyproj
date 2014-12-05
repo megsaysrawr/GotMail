@@ -40,11 +40,12 @@
     <Folder Include="static\" />
     <Folder Include="static\content\" />
     <Folder Include="static\fonts\" />
+    <Folder Include="static\images\" />
     <Folder Include="static\scripts\" />
     <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="static\favicon.ico" />
+    <Content Include="static\images\favicon.ico" />
     <Content Include="requirements.txt" />
     <Content Include="static\content\bootstrap.css" />
     <Content Include="static\content\bootstrap.min.css" />
