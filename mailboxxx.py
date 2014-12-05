@@ -19,8 +19,6 @@ class Mailroom(object):
         elif input_type is Mailbox:
             self.mailboxes.append(mailbox)
 
-
-
         
 class Mailbox(object):
     def __init__(self, owner, mb_num, sensor_num, core):
@@ -99,13 +97,13 @@ class Owner(object):
         self.email = email
         
 def main():
-    Olin = Mailroom([]) # Create a mailroom
+    olin = Mailroom([]) # Create a mailroom
     spark = SparkCloud(spark_auth['accesstoken'])  # Connect to Spark cloud
     
     steve = Owner('Steve', 'megan@mccauley.net', )
     steve_mail = Mailbox(steve, 128, 1, spark.RE_core1)
 
-    Olin.addmailbox(steve_mail)
+    olin.addmailbox(steve_mail)
     ## Set schedule ##
     check_interval = 20 # Seconds
     check_sec = None
@@ -115,13 +113,13 @@ def main():
         if current_second % check_interval == 0 and check_sec != current_second:  # If its time to check for mail and we haven't already checked this second,
             check_sec = current_second
             print 'Checking mailboxes...'
-            for mb in Olin.mailboxes:   # Go to every mailbox,
+            for mb in olin.mailboxes:   # Go to every mailbox,
                 error = mb.check()      # And check for mail
                 print mb.got_mail
                 if error:   # Fiddlesticks
                     print 'Error while checking ' + str(mb)
             print 'Done Checking.'
-            for mb in Olin.mailboxes:
+            for mb in olin.mailboxes:
                 if mb.got_mail and mb.notify_yes:
                     mb.notify_owner()
                     print 'SENT!'
