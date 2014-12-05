@@ -1,31 +1,22 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<div class="jumbotron">
-    <h1>Olin GotMail</h1>
-    <p class="lead">Check the status of your mailbox from the comfort of wherever you are!</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="inner">
+    <h3 class="masthead-brand"><a href="{{ url_for('home') }}">Script Status Monitor</a></h3>
+    <ul class="nav masthead-nav">
+        <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+    </ul>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            This is 
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+          </div>
+<div class="outer-inner-cover animated zoomIn">
+    <h1 class="cover-heading">Olin GotMail</h1>
+    <div class="inner-cover">
+        <p class="lead">Latest progress update/status:</p>
+        <div class="matlabdiv">
+            <p class="matlab">{{ message }}</p>
+        </div>
+        <p class="timestamp">Last update recieved at 12:39 PM 09/12/2014</p>
+        <a href="{{ url_for('home') }}"><button type="button" class="btn btn-outline-inverse btn-lg">Refresh Page</button></a>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Python Tools for Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
-
-{% endblock %}
+    {% endblock %}

@@ -2,15 +2,30 @@ from datetime import datetime
 from flask import render_template, flash, redirect
 from app import app
 from forms import LoginForm
+from spark import sparkcheck
 
 @app.route('/')
 @app.route('/home')
 def home():
+    sparkserv = SparkCloud('accesstoken')  # Connect to Spark cloud
+    core = sparkserv.RE_core1
+    try:
+        sensor = core.analogRead('1')
+    except:     # Specifically, KeyError, I think.
+        # Catch errors, spark temporarily disconnected from internet, etc.
+        # print 'Connection error'
+        got_mail_ret = 2
+    else:
+        if sensor > 3300:   # Mail threshold
+            got_mail_ret = 1
+        else:
+            got_mail_ret = 0
+
+    responses = ['There is no mail.', 'You\'ve got mail!', 'There was a connectivity error. Please try again later.']
     return render_template(
         'index.html',
         title = 'Home Page',
-        year = datetime.now().year,
-        applicationname = 'Check Mail',
+        message = responses[got_mail_ret],
     )
 
 @app.route('/contact')
