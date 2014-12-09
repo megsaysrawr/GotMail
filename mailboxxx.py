@@ -21,6 +21,7 @@ class Mailroom(object):
 
         
 class Mailbox(object):
+    """Creates a Mailbox object that can be put in the Mailroom class"""
     def __init__(self, owner, mb_num, sensor_num, core):
         self.owner = owner  # Owner object
         self.number = mb_num  # Mailbox number
