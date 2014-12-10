@@ -83,12 +83,13 @@ class Mailbox(object):
         past = self.lastnotification
         present = arrow.utcnow()
         difference = present - past
-        if difference > 60 * 10:    # Configure this. Make mailbox attribute?
+        print difference
+        if difference.seconds > 60:    # Configure this. Make mailbox attribute?
             return True
-    	return False
+        return False
 
     def notify_owner(self):
-        sendemail('OlinGotMail@gmail.com', self.owner.email, 'You\'ve Got Mail!', 'Go check your mailbox, ' + self.owner.name, \
+        sendemail('OlinGotMail@gmail.com', self.owner.email, 'You\'ve Got Mail!', 'Go check your mailbox, ' + self.owner.name + '.', \
              mail_auth['login'], mail_auth['password'])
         self.lastnotification = arrow.utcnow()
 
@@ -101,12 +102,12 @@ def main():
     olin = Mailroom([]) # Create a mailroom
     spark = SparkCloud(spark_auth['accesstoken'])  # Connect to Spark cloud
     
-    steve = Owner('Steve', 'megan@mccauley.net', )
+    steve = Owner('Ryan', 'emailtestre@gmail.com')
     steve_mail = Mailbox(steve, 128, 1, spark.RE_core1)
 
     olin.addmailbox(steve_mail)
     ## Set schedule ##
-    check_interval = 20 # Seconds
+    check_interval = 10 # Seconds
     check_sec = None
     while True: # Main loop
         current_time = arrow.utcnow()
@@ -121,7 +122,7 @@ def main():
                     print 'Error while checking ' + str(mb)
             print 'Done Checking.'
             for mb in olin.mailboxes:
-                if mb.got_mail and mb.notify_yes:
+                if mb.got_mail and mb.notify_yes():
                     mb.notify_owner()
                     print 'SENT!'
 
