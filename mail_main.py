@@ -1,4 +1,4 @@
-# mailboxxx.py
+#mail_main.py
 
 from send_email import sendemail
 from mail_authentication import mail_auth, spark_auth
@@ -18,7 +18,6 @@ class Mailroom(object):
             self.mailboxes.extend(mailbox)
         elif input_type is Mailbox:
             self.mailboxes.append(mailbox)
-
         
 class Mailbox(object):
     """Creates a Mailbox object that can be put in the Mailroom class"""
