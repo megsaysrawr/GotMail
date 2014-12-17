@@ -3,6 +3,7 @@
 from send_email import sendemail
 from mail_authentication import mail_auth, spark_auth
 from spyrk import SparkCloud
+from dropboxcsv import csvtocloud
 import arrow
 import csv
 
@@ -11,6 +12,7 @@ class Mailroom(object):
     def __init__(self, mailboxes, max_boxes=10):
         self.mailboxes = mailboxes
         self.max_boxes = max_boxes
+        self.total_mailroom = None
 
     def addmailbox(self, mailbox):
         """Input either a single mailbox or a list of mailboxes
@@ -26,19 +28,20 @@ class Mailroom(object):
         total_mailroom = {}
         for mailbox in range(self.max_boxes):
             total_mailroom[mailbox] = None
+        self.total_mailroom = total_mailroom
 
     def mailroom_list(self):
         """Generates a csv file of all mailboxes in the mailroom and 
         puts it on Dropbox"""
         for mailbox in self.mailboxes:
-            total_mailroom[mailbox.number] = mailbox.got_mail
-        with open('sample_csv.csv', 'r+b') as csvfile:
-            filewrite = csv.writer(csvfile, delimiter=',', \
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            self.total_mailroom[mailbox.number-1] = mailbox.got_mail
+        with open('sample_csv.csv', 'wb') as csvfile:
+            filewrite = csv.writer(csvfile)
             for mailbox in range(self.max_boxes):
-                row = total_mailroom[mailbox]
-                filewrite.writerow(row)
-            Dropboxwpload(csvfile)
+                row = self.total_mailroom[mailbox]
+                filewrite.writerow([row])
+        with open('sample_csv.csv', 'rb') as sendfile:
+            csvtocloud(sendfile)
         
 class Mailbox(object):
     """Creates a Mailbox object that can be put in the Mailroom class"""
@@ -123,7 +126,7 @@ def main():
     spark = SparkCloud(spark_auth['accesstoken'])  # Connect to Spark cloud
     
     steve = Owner('Ryan', 'emailtestre@gmail.com')
-    steve_mail = Mailbox(steve, 128, 1, spark.RE_core1)
+    steve_mail = Mailbox(steve, 4, 1, spark.RE_core1)
 
     olin.addmailbox(steve_mail)
     olin.mailroom_boxes() # create empty dictionary of all mailboxes in mailroom
