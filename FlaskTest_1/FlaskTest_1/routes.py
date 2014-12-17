@@ -1,13 +1,15 @@
 from datetime import datetime
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, Response
 from app import app
 from forms import LoginForm
 from spark import sparkcheck
+from urllib2 import urlopen
 
 @app.route('/')
 @app.route('/home')
 def home():
-    
+    def gotmail():
+        with open('
     return render_template(
         'index.html',
         title = 'Home Page',
@@ -48,4 +50,12 @@ def login():
          applicationname = 'Check Mail',
          message = 'Your application description page.',
          form=form)
-    
+
+@app.route('/yieldit')
+def yieldit():
+    def inner():
+        return 'Yes'
+    return render_template(
+        'index.html',
+        title = 'Home Page',
+        message = inner())  # text/html is required
