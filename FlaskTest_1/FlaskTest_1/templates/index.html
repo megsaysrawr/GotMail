@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="inner">
-    <h3 class="masthead-brand"><a href="{{ url_for('home') }}">Script Status Monitor</a></h3>
+    <h3 class="masthead-brand"><a href="{{ url_for('home') }}">Olin GotMail</a></h3>
     <ul class="nav masthead-nav">
         <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
@@ -16,7 +16,6 @@
         <div class="matlabdiv">
             <p class="matlab">{{ message }}</p>
         </div>
-        <p class="timestamp">Last update recieved at 12:39 PM 09/12/2014</p>
-        <a href="{{ url_for('home') }}"><button type="button" class="btn btn-outline-inverse btn-lg">Refresh Page</button></a>
-    </div>
+        <p class="timestamp">Last checked at {{ timest }}.</p>
+        </div>
     {% endblock %}

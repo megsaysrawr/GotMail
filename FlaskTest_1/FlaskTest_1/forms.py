@@ -1,8 +1,6 @@
 from flask.ext.wtf import Form, html5
 from wtforms import StringField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, NumberRange
 
-class LoginForm(Form):
-    openid = StringField('openid', validators=[DataRequired()])
-    remember_me = BooleanField('remember_me', default=False)
-    email_box = html5.EmailField('Your email')
+class MailboxForm(Form):
+    num_box = html5.IntegerField('Mailbox Number', NumberRange(1, 10, 'Please enter your mailbox number (1-10)'))

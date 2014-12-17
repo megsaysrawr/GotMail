@@ -1,19 +1,40 @@
 from datetime import datetime
-from flask import render_template, flash, redirect, Response
+from flask import render_template, flash, redirect, request
 from app import app
-from forms import LoginForm
-from spark import sparkcheck
-from urllib2 import urlopen
+from forms import MailboxForm
+import requests as reqs
+import csv
+import arrow
 
-@app.route('/')
-@app.route('/home')
-def home():
-    def gotmail():
-        with open('
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
+@app.route('/olin/mb<mbnum>')
+@app.route('/olin/<mbnum>')
+def home(mbnum = 0):
+    form = MailboxForm
+    def gotmail(mbnum):
+        if mbnum == 0:
+            return 'Please enter your mailbox url.'
+        req = reqs.get('https://dl.dropboxusercontent.com/s/6lmwzacom7gdu0z/mailboxdata.csv')
+        mbs = req.content.split()
+        got_mail = mbs[mbnum-1]
+        responses = ["You've got mail!", "No mail today.", "This mailbox is not currently using Olin GotMail. Sign up!", "An error has occurred. Sorry!"]
+        if got_mail == 'True':
+            return responses[0]
+        elif got_mail == 'False':
+            return responses[1]
+        elif got_mail == '""':
+            return responses[2]
+        else:
+            return responses[3]
+    msg = gotmail(int(mbnum))
+    #timestp = arrow.utcnow().to('US/Eastern').format('h:mm:ssA on dddd, M/D/YYYY')
     return render_template(
         'index.html',
+        timest = arrow.utcnow().replace(hours = -5).format('h:mm:ss A on dddd, M/D/YYYY'),
         title = 'Home Page',
-        message = 'Message goes here!',
+        message = msg,
     )
 
 @app.route('/contact')
@@ -51,11 +72,3 @@ def login():
          message = 'Your application description page.',
          form=form)
 
-@app.route('/yieldit')
-def yieldit():
-    def inner():
-        return 'Yes'
-    return render_template(
-        'index.html',
-        title = 'Home Page',
-        message = inner())  # text/html is required
