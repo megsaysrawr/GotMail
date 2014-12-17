@@ -17,5 +17,16 @@
             <p class="matlab">{{ message }}</p>
         </div>
         <p class="timestamp">Last checked at {{ timest }}.</p>
-        </div>
-    {% endblock %}
+    </div>
+    <form action="" method="post" name="mailbox">
+        {{ form.hidden_tag() }}
+        Please enter your mailbox number:<br>
+        {{ form.num_box() }}<br>
+        {% for error in form.num_box.errors %}
+        <span style="color: #b6ff00;">[{{ error }}]</span>
+        {% endfor %}<br>
+
+        <button type="submit" class="btn btn-outline-inverse btn-lg">Check mail!</button>
+    </form>    
+</div>
+{% endblock %}
