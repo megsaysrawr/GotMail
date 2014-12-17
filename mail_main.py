@@ -4,11 +4,13 @@ from send_email import sendemail
 from mail_authentication import mail_auth, spark_auth
 from spyrk import SparkCloud
 import arrow
+import csv
 
 class Mailroom(object):
     """Initialize with a list of mailbox objects."""
-    def __init__(self, mailboxes):
+    def __init__(self, mailboxes, max_boxes=10):
         self.mailboxes = mailboxes
+        self.max_boxes = max_boxes
 
     def addmailbox(self, mailbox):
         """Input either a single mailbox or a list of mailboxes
@@ -18,6 +20,25 @@ class Mailroom(object):
             self.mailboxes.extend(mailbox)
         elif input_type is Mailbox:
             self.mailboxes.append(mailbox)
+
+    def mailroom_boxes(self):
+        """Creates an empty dictionary of all mailboxes in mailroom"""
+        total_mailroom = {}
+        for mailbox in range(self.max_boxes):
+            total_mailroom[mailbox] = None
+
+    def mailroom_list(self):
+        """Generates a csv file of all mailboxes in the mailroom and 
+        puts it on Dropbox"""
+        for mailbox in self.mailboxes:
+            total_mailroom[mailbox.number] = mailbox.got_mail
+        with open('sample_csv.csv', 'r+b') as csvfile:
+            filewrite = csv.writer(csvfile, delimiter=',', \
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            for mailbox in range(self.max_boxes):
+                row = total_mailroom[mailbox]
+                filewrite.writerow(row)
+            Dropboxwpload(csvfile)
         
 class Mailbox(object):
     """Creates a Mailbox object that can be put in the Mailroom class"""
@@ -105,6 +126,7 @@ def main():
     steve_mail = Mailbox(steve, 128, 1, spark.RE_core1)
 
     olin.addmailbox(steve_mail)
+    olin.mailroom_boxes() # create empty dictionary of all mailboxes in mailroom
     ## Set schedule ##
     check_interval = 10 # Seconds
     check_sec = None
@@ -124,6 +146,7 @@ def main():
                 if mb.got_mail and mb.notify_yes():
                     mb.notify_owner()
                     print 'SENT!'
+            olin.mailroom_list() # loop and generate csv file and put on Dropbox
 
         # For every mailbox
             #if it's got mail AND NOT within a few days since last notification
