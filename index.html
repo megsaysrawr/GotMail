@@ -66,10 +66,13 @@
 
                                 As an avenue for future work, the remote location could have an interface to allow mailbox owners to check the status of their mailbox or an administrator to check the status of all mailboxes through a web app or mobile application.</p>
 
-                                <u><h3>Initial Design Goals</u></h3>
-                                <h3>Sensing Device</h3>
+                                <!-- <u><h3>Initial Design Goals</u></h3> -->
+                                <h4><u>Initial Design Goal</u> &mdash; <i>Sensing Device</i></h4>
                                 The sensing device will be entirely self-contained. It can be placed entirely into a mailbox, with no external sources of power or network connectivity. As such, it must operate in such a way to manage battery power efficiently, sending an alert before it runs out of power. Network connectivity should be done in such a way to allow multiple sensing devices to communicate to the same remote location.
-                                <h3>Remote Location</h3>
+                                <br>
+                                <br>
+
+                                <h4><u>Initial Design Goal</u> &mdash; <i>Remote Location</i></h4>
                                 <p>The remote location will receive mailbox data from one or more sensing devices. This will parse and store mailbox sensor data. This will operate without a physical connection to the sensor device.</p>
                                 
                                 <h3>Minimum Deliverable</h3>
@@ -80,18 +83,12 @@
                                 <li>Integrate the notifications in a user friendly and interactive way.</li>
                                 <li>Central server which the Raspberry Pis sends sensor data to and then forwards the notification to the end user. This would also lend itself to creating an administrator web app to check the status of multiple mailboxes.</li>
                                 <li>Gamification. Get your mail within 5 minutes of notification and get 10 bonus points.</li>
-                                Graph the data to determine the frequency of when people pick up their mail.</li>
+                                <li>Graph the data to determine the frequency of when people pick up their mail.</li>
                                 <li>Provide commercial services for a Products and Markets team (who has a need for such things).</li>
                                 <br>
 
                                 <h3>Initial Steps/Materials/Thoughts</h3>
-                                We want to measure the dimensions of an Olin mailbox and create a model, either by 3D printing, or laser cutting, for testing purposes.  We would then use a Raspberry Pi and a sensor (most likely an IR sensor or strain gauge) or a photogate to determine whether or not mail is in the mailbox.  We would then send that information to the owner of the mailbox.<br>
-                                <ul style="list-style-type:disc">
-                                <li>Measure an Olin mailbox and create (lasercut?) a mockup of a mailbox for testing.</li>
-                                <li>Sensor types -- IR, strain, force, sonar, lidar, other ludicrous sensors</li>
-                                <li>Very quickly, determine sensor which detects mail (force sensor, eventually detect amt. of mail?)</li>
-                                <li>Talk to IT and determine how to get olin domain/run web server.</li>
-                                Our most pressing issue currently is to determine a way to sense whether or not there is a piece of mail using hardware integration.
+                                We want to measure the dimensions of an Olin mailbox and create a model, either by 3D printing, or laser cutting pieces, for testing purposes.  We would then use a Raspberry Pi and a sensor (most likely an IR sensor or strain gauge) or a photogate to determine whether or not mail is in the mailbox.  We would then send that information to the owner of the mailbox.  For a reach goal, we wanted to talk to IT and determine how to get an Olin domain/run a web server.
                                 <br>
                                 <br>
 
@@ -107,13 +104,13 @@
                                 </header>
                                 
                                 <h3>Notification</h3>
-                                <p>Our main goal is to notify a user when they receive mail in their mailbox, so our first design decision centered around how to send this notification. We considered text messages, emails, and even Twitter, all of which would be possible using Python. We’ve chosen email as our first and primary method of user notification. Email is a means of conveying similar information--information about meetings, about orders, and about deliveries--and is the natural manner of letting users know that they’ve got mail, especially at Olin.
+                                <p>Our main goal is to notify a user when they receive mail in their mailbox, so our first design decision centered around how to send this notification. We considered text messages, emails, and even Twitter, all of which would be possible using Python. We have chosen email as our first and primary method of user notification. Email is a means of conveying similar information &mdash; information about meetings, about orders, and about deliveries &mdash; and is the natural manner of letting users know that they have received mail, especially at Olin.
                                 </p>
 
                                 <h3>Wireless Connectivity</h3>   
-                                <p>Our next design decision involved determining how to connect the sensors in the mailbox to our online notification center. A Raspberry Pi, [RPi] which lacks an analog to digital converter [ADC], would make it more difficult to interface with some very useful sensors. Additionally, an RPi running as a mobile sensing unit would consume relatively great amounts of power and lacks a native wireless connectivity option--not ideal for a compact, self-contained sensing unit. A microcontroller, such as the Arduino, is closer to what we need--Arduinos cost less than an RPi and make it easier to interface with sensors. However, wireless connectivity is still a relatively expensive add-on.<br>
+                                <p>Our next design decision involved determining how to connect the sensors in the mailbox to our online notification center. A Raspberry Pi, (RPi) which lacks an analog to digital converter (ADC), would make it more difficult to interface with some very useful sensors. Additionally, an RPi running as a mobile sensing unit would consume relatively great amounts of power and lacks a native wireless connectivity option &mdash; not ideal for a compact, self-contained sensing unit. A microcontroller, such as the Arduino, is closer to what we need &mdash; Arduinos cost less than an RPi and make it easier to interface with sensors. However, wireless connectivity is still a relatively expensive add-on.<br>
 
-                                Due to these design considerations, we have chosen a Spark Core as the most effective hardware for our purposes. Spark Core is a tiny microcontroller with tightly integrated wireless connectivity. It allows us to remotely read sensors and run functions using an API.
+                                Due to these design considerations, we have chosen a Spark Core as the most effective hardware for our purposes. A Spark Core is a tiny microcontroller with tightly integrated wireless connectivity. It allows us to remotely read sensors and run functions using an API.
                                 </p>
 
                                 <h3>Server</h3>   
@@ -121,7 +118,7 @@
                                 </p>
 
                                 <h3>Model</h3>   
-                                <p>We chose to build a model of one of the Olin mailboxes so we could run tests outside of the mailroom.  We used the dimensions from the mailboxes and built a replica out of wood.  By having a 3D model that is mobile, we are able to make sure all of our components fit inside of the mailbox and we can rapidly prototype without having to constantly go into the mailroom, which is especially important if we are working when the mailroom is closed.
+                                <p>We chose to build a model of one of the Olin mailboxes so we could run tests outside of the mailroom.  We used the dimensions from the mailboxes and built a replica out of MDF.  By having a 3D model that is mobile, we are able to make sure all of our components fit inside of the mailbox and we can rapidly prototype without having to constantly go into the mailroom, which is especially important if we are working when the mailroom is closed.
                                 </p>
 
                                 <h3>Sensors</h3>   
@@ -169,12 +166,12 @@
                                     In order to mount our sensor inside a mailbox, we 3D printed a stand. We had to make sure that the stand would fit unobtrusively in the mailbox and properly support our sensor. We printed multiple iterations and experimented with positioning the sensor at different angles. Our final iteration involved printing a slot at a 45&deg; angle which accommodated the bend in the sensor.  It also allowed the sensor to remain at the correct height in order for mail to activate it. Lastly, we secured the sensor and the mount inside of our mailbox at a reasonable depth that allowed mail to be placed inside and keep it flexed.
                                 <h3>Software Additions</h3>
                                 <p>
-                                    Since our last design review, we have eliminated the double message sending problem. This was caused by two methods being declared as attributes, without their parentheses. We have also been working on getting our code to read and write .csv files. These files are going to keep track of the state and owner of each mailboxes. Currently, the .csv file that we are writing has two columns, one with the owner’s name and the second with a Boolean that represents whether or not that mailbox has mail. There will be empty rows in our .csv for those students who chose not to participate in our program. By keeping the row number of the .csv consistent with the mailbox number, we are increasing the processing speed of our code. Instead of parsing through many names or numbers, the location of each mailbox is specified by its row number.
+                                    Since our last design review, we have eliminated the problem of sending double messages. This was caused by two methods being declared as attributes, without their parentheses. We have also been working on getting our code to read and write .csv files. These files are going to keep track of the state and owner of each mailboxes. Currently, the .csv file that we are writing has two columns, one with the owner’s name and the second with a Boolean that represents whether or not that mailbox has mail. There will be empty rows in our .csv for those students who chose not to participate in our program. By keeping the row number of the .csv consistent with the mailbox number, we are increasing the processing speed of our code. Instead of parsing through many names or numbers, the location of each mailbox is specified by its row number.
                                 </p>
                                 <h3><u>Analysis of Outcome</u></h3>
                                 <h3>Minimum Deliverable</h3>
                                     Our minimum deliverable was defined as being able to identify the presence (or non-presence) of mail in an Oliner’s mailbox and then send an email to notify the owner of the mailbox. We achieved our minimum deliverable within the first week of this six week long project. As it turns out, sending email with Python is a lot simpler than we thought.<br>
-                                    What really slowed us down was not having the proper sensor. Due to lack of monitoring of the ordering system put in place at Olin and transition between responsible parties, we were not able to get the sensor that we had hoped to get, a pressure sensitive force sensor. At the beginning of our project, we worked with a light sensor and covered it up to sense the presence of mail. After bringing our sensor problems to our professor, he provided us with three types of sensors to choose from. We thought through design considerations and tested the sensors because settling on the force sensitive bendable resistor that we use in our final project.
+                                    What really slowed us down was not having the proper sensor. Due to lack of monitoring of the ordering system put in place at Olin and transition between responsible parties, we were not able to get the sensor that we had hoped to get, a pressure sensitive force sensor. At the beginning of our project, we worked with a light sensor and covered it up to sense the presence of mail. After bringing our sensor problems to our professor, he provided us with three types of sensors to choose from. We thought through design considerations, tested the sensors, and chose to use the force sensitive bendable resistor (flex sensor) that we used in our final project.
 
                                 <h3>Maximum Deliverable</h3>
                                 <p>
@@ -182,7 +179,7 @@
                                 </p>
                                 <h3>Design Reflection</h3>
                                 <p>
-                                    Our best decision was choosing to control our system with the Spark Core. We had initially planned to work with a Raspberry Pi, but this proved to be difficult and expensive, due to the lack of availability of the WiFi shield at Olin. We also had some difficulty with selecting a sensor. Looking back, using a beam breaker or a pressure sensor might have been a better option, however we ran into issues when we attempted to order a pressure sensor, which forced us to have to improvise. Our thanks goes to Amon for letting us borrow some sensors to test, including the flex sensor that we ended up using for this project.
+                                    Our best decision was choosing to control our system with the Spark Core. We had initially planned to work with a Raspberry Pi, but this proved to be difficult and expensive, due to the lack of availability of the WiFi shield at Olin. We also had some difficulty with selecting a sensor. Looking back, using a beam breaker or a pressure sensor might have been a better option, however we ran into issues when we attempted to order a pressure sensor, which forced us to have to improvise. Our thanks go to Amon for letting us borrow some sensors to test, including the flex sensor that we ended up using for this project.
                                 </p>
                                 <h3>Division of Labor Reflection</h3>
                                 <p>
@@ -244,12 +241,12 @@
                                 <br>
                                 <h3>Anders Johnson</h3>
                                 <img src="images/anders.jpg" alt="anders" width="20%" height="20%" align="left"/>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anders is currently a sophomore at Olin College of Engineering, majoring in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mechanical Engineering. </p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anders is currently a sophomore at Olin College of Engineering, majoring in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mechanical Engineering. He really enjoys mechanical design and invests a lot<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of time working with the Olin College Baja SAE racing team. A rabid soccer<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player and fan, you can find him outside on the great lawn kicking a soccer<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ball around in his free time. </p>
                                 <div style="clear:both"/>
                                 <br>
                                 <h3>Meg McCauley</h3>
                                 <img src="images/meg.jpg" alt="meg" width="20%" height="20%" align="left"/>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meg is currently a sophomore at Olin College of Engineering, majoring in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Electrical and Computer Engineering. <!-- She hopes to see this project grow into a scalable venture open to the Olin community. --><p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meg is currently a sophomore at Olin College of Engineering, majoring in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Electrical and Computer Engineering. On the weekends you can find her<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;winning hackathons. (She's currently 3-0) She also enjoys curling up with a<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blanket, a good book, and a cup of peppermint hot chocolate. She hopes to<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;see this project grow into a scalable venture open to the Olin community.<p>
                             </article>
 
                     </div>
