@@ -4,10 +4,10 @@ Olin GotMail is a system for alerting recipients to physical mail in their on-ca
 
 ## Required modules:
 The following 3<sup>rd</sup>-party modules are required to run `mail_main.py` and its supporting functions.
-- Arrow--A module for dates and times. `pip install arrow`
-- Dropbox SDK--Dropbox's module for manipulating files within their cloud service. `pip install dropbox`
-- Spyrk--A python wrapper of the Spark Core API. `pip install spyrk`
-- Please see `requirements.txt` in the `Flask-App` directory to find modules required to run the web-app. 
+- Arrow---A module for dates and times. `pip install arrow`
+- Dropbox SDK---Dropbox's module for manipulating files within their cloud service. `pip install dropbox`
+- Spyrk---A python wrapper of the Spark Core API. `pip install spyrk`
+- Please see `requirements.txt` in the `Flask-App` directory to find modules required to run the web app. 
 
 ## Authentication
 In order to run these programs, you must create a file called `mail_authentication.py` in the project's root directory and structure it as shown in `mail_authentication_sample.py`. This handles authentication with the Spark Cloud, with GMail, and with Dropbox.
