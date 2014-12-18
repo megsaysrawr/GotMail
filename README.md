@@ -15,6 +15,12 @@ In order to run these programs, you must create a file called `mail_authenticati
 In order to monitor mailboxes, first configure your mailroom in and then run `mail_main.py`. Support functions are contained within `send_email.py` and `dropboxcsv.py`.
 `mailboxdata.csv` is a sample of the data file stored in Dropbox.
 
+## Flask
+The `Flask-App` directory contains the resources necessary to create a web application which checks the status of a given mailbox. You will need to create a virtual environment and install modules to run this locally, but there is a `requirements.txt` in the [root directory](https://github.com/megsaysrawr/GotMail/tree/master/Flask-App/FlaskTest_1 "App root directory") of the app which lists all necessary modules.
+
+## Spark Core
+The script which runs on the Spark Core is avaliable in the `Spark Core` directory. This code reads sensors, exposes a function to the Spark Cloud and its web API, and blinks a indicator LED.
+
 ##Other directories
 The `Renders` directory contains CAD renders of our sensor mount and mailbox.
 
