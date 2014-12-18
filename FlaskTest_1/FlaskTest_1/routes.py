@@ -18,7 +18,7 @@ def home(mbnum=0):
         return redirect('/olin/'+str(form.num_box.data))
     def gotmail(mbnum):
         if mbnum == 0:
-            return 'Please enter your mailbox url.'
+            return 'Please enter your mailbox number below.'
         req = reqs.get('https://dl.dropboxusercontent.com/s/6lmwzacom7gdu0z/mailboxdata.csv')
         mbs = req.content.split()
         got_mail = mbs[mbnum - 1]

@@ -20,7 +20,7 @@
     </div>
     <form action="" method="post" name="mailbox">
         {{ form.hidden_tag() }}
-        Please enter your mailbox number:<br>
+        Please enter your mailbox number [1-10]:<br>
         {{ form.num_box() }}<br>
         {% for error in form.num_box.errors %}
         <span style="color: #b6ff00;">[{{ error }}]</span>
