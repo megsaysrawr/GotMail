@@ -164,10 +164,15 @@ def main():
     olin = Mailroom([]) # Create a mailroom
     spark = SparkCloud(spark_auth['accesstoken'])  # Connect to Spark cloud
     
-    steve = Owner('Ryan', 'emailtestre@gmail.com')
-    steve_mail = Mailbox(steve, 4, 1, spark.RE_core1)
+    # Configure owners
+    own_1 = Owner('Meg', 'Megan@McCauley.net')
 
+    # Configure Mailboxes
+    steve_mail = Mailbox(own_1, 4, 1, spark.RE_core1)
+
+    # Configure Mailroom
     olin.addmailbox(steve_mail)
+
     olin.mailroom_boxes() # create empty dictionary of all mailboxes in mailroom
     ## Set schedule ##
     check_interval = 10 # Seconds

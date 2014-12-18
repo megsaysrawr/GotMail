@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="inner">
+    <h3 class="masthead-brand"><a href="{{ url_for('home') }}">Olin GotMail</a></h3>
+    <ul class="nav masthead-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li class="active"><a href="{{ url_for('about') }}">About</a></li>
+    </ul>
+</div>
+          </div>
+<div class="animated fadeInDown">
+    <div class="inner cover">
+        <h1 class="cover-heading">About</h1>
+        <div class="inner-cover-text">
+            <p class="about">Olin GotMail is a way to check on your mailbox from anywhere. On the main screen, enter your mailbox number, and we'll let you know whether you've got mail! </p>
+            <p class="about">Alternatively, use can use your mailbox's unique link to check your mail directly. To get your mailbox's unique link, append "/olin/mb[YOUR-MAILBOX-NUMBER]" or even just "/olin/[YOUR-MAILBOX-NUMBER]" to our home web address!</p>
+            <p class="about">To learn more, please visit our <a href="https://megsaysrawr.github.io/GotMail" target="_blank">website</a>. You may also see our code hosted on <a href="https://www.github.com/megsaysrawr/GotMail" target="_blank">GitHub</a>. Thank you!
+</div>
+
+    </div>
+
+    {% endblock %}

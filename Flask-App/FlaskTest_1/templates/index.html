@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="inner">
+    <h3 class="masthead-brand"><a href="{{ url_for('home') }}">Olin GotMail</a></h3>
+    <ul class="nav masthead-nav">
+        <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+    </ul>
+</div>
+          </div>
+<div class="outer-inner-cover animated zoomIn">
+    <h1 class="cover-heading">Olin GotMail</h1>
+    <div class="inner-cover">
+        <p class="lead">{{statusmessage}}</p>
+        <div class="matlabdiv">
+            <p class="matlab">{{ message }}</p>
+        </div>
+        <p class="timestamp">Last checked at {{ timest }}.</p>
+    </div>
+    <form action="" method="post" name="mailbox">
+        {{ form.hidden_tag() }}
+        Please enter your mailbox number (1-10):<br>
+        {{ form.num_box(autocomplete="off") }}<br>
+        {% for error in form.num_box.errors %}
+        <span style="color: #b6ff00;">[{{ error }}]</span>
+        {% endfor %}<br>
+
+        <button type="submit" class="btn btn-outline-inverse btn-lg">Check mail!</button>
+    </form>    
+</div>
+{% endblock %}
