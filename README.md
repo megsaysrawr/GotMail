@@ -3,6 +3,7 @@ Olin GotMail
 Olin GotMail is a system for alerting recipients to physical mail in their on-campus mailboxes. Please visit our [website](https://megsaysrawr.github.io/GotMail "Project website") for more information. This repository contains our mail-checking script, `mail_main.py` and a `Flask-App` directory which holds files in support of a web application.
 
 ## Required modules:
+The following 3<sup>rd</sup>-party modules are required to run `mail_main.py` and its supporting functions.
 - Arrow--A module for dates and times. `pip install arrow`
 - Dropbox SDK--Dropbox's module for manipulating files within their cloud service. `pip install dropbox`
 - Spyrk--A python wrapper of the Spark Core API. `pip install spyrk`
