@@ -11,7 +11,8 @@ Olin GotMail is a system for alerting recipients to physical mail in their on-ca
 In order to run these programs, you must create a file called `mail_authentication.py` in the project's root directory and structure it as shown in `mail_authentication_sample.py`. This handles authentication with the Spark Cloud, with GMail, and with Dropbox.
 
 ## Run
-In order to monitor mailboxes, first configure your mailroom in and then run `mail_main.py`.
+In order to monitor mailboxes, first configure your mailroom in and then run `mail_main.py`. Support functions are contained within `send_email.py` and `dropboxcsv.py`.
+`mailboxdata.csv` is a sample of the data file stored in Dropbox.
 
 ##Other directories
 The `Renders` directory contains CAD renders of our sensor mount and mailbox.
